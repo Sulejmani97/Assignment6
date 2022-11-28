@@ -1,12 +1,12 @@
 //
-//  BooksApp.swift
-//  Books
+//  AlbumsApp.swift
+//  Albums
 //
-//  Created by Kurt McMahon on 10/27/22.
-//
+//  Created by Destin Sulejmani on 11/24/22 //
 
 import SwiftUI
 
+// Main of program
 @main
 struct AlbumsApp: App {
     

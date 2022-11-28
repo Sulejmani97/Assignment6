@@ -1,8 +1,8 @@
 //
 //  ContentView.swift
-//  Books
+//  Albums
 //
-//  Created by Kurt McMahon on 10/27/22.
+//  Created by Destin Sulejmani on 11/20/22
 //
 
 import SwiftUI
@@ -16,12 +16,16 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             List {
+                
+                // Loop to show all the albums
                 ForEach(listOfAlbums) { album in
                     NavigationLink(destination: ModifyAlbumVIew(album: album), label: {
                         AlbumRow(album: album).id(UUID())
                         
                     })
                 }
+                
+                // Delete albums
                 .onDelete(perform: { indexes in
                     Task(priority: .high) {
                         await deleteAlbum(indexes: indexes)
@@ -40,6 +44,8 @@ struct ContentView: View {
                             listOfAlbums.sortDescriptors = [sort]
                         }
                         
+                        
+                        // Sort albums by artist, year
                         Button("Sort by Artist") {
                             let sort1 = SortDescriptor(\Album.author, order: .forward)
                             let sort2 = SortDescriptor(\Album.year, order: .reverse)
@@ -64,6 +70,8 @@ struct ContentView: View {
         }
     }
     
+    
+    // Func to handle deletion of albums
     func deleteAlbum(indexes: IndexSet) async {
         await dbContext.perform {
             for index in indexes {
@@ -79,6 +87,7 @@ struct ContentView: View {
     }
 }
 
+// Shows 2 sample albums if none are created yet
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()

@@ -1,8 +1,8 @@
 //
-//  BookRow.swift
-//  Books
+//  AlbumRow.swift
+//  Albums
 //
-//  Created by Kurt McMahon on 11/1/22.
+//  Created by Destin Sulejmani 11/20/22
 //
 
 import SwiftUI
@@ -13,6 +13,8 @@ struct AlbumRow: View {
 
     var body: some View {
         
+        
+        // Shows album + details in formatted view
         HStack(alignment: .top) {
             Image(uiImage: album.showCover)
                 .resizable()
@@ -37,6 +39,8 @@ struct AlbumRow: View {
     }
 }
 
+
+// Shows a sample album if one is not created
 struct AlbumRow_Previews: PreviewProvider {
     
     static let viewContext = PersistenceController.preview.container.viewContext

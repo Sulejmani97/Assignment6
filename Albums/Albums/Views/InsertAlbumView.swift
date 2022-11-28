@@ -1,9 +1,8 @@
 //
-//  InsertBookView.swift
-//  Books
+//  InsertAlbumView.swift
+//  Albums
 //
-//  Created by Kurt McMahon on 11/1/22.
-//
+//  Created by Destin Sulejmani on 11/20/22 //
 
 import SwiftUI
 import PhotosUI
@@ -13,6 +12,7 @@ struct InsertAlbumView: View {
     @Environment(\.managedObjectContext) var dbContext
     @Environment(\.dismiss) var dismiss
     
+    // Variables list
     @State private var inputTitle = ""
     @State private var inputYear = ""
     @State private var inputAuthor = ""
@@ -21,6 +21,8 @@ struct InsertAlbumView: View {
     @State private var selectedImageData: Data? = nil
     
     var body: some View {
+        
+        // Nav stack to show Title, year, and artist
         NavigationStack {
             VStack(spacing: 12) {
                 HStack {
@@ -98,6 +100,7 @@ struct InsertAlbumView: View {
         }
     }
     
+    // Func to store new album
     func storeAlbum(title: String, year: Int32, author: String) async {
         await dbContext.perform {
             let newAlbum = Album(context: dbContext)
@@ -121,6 +124,7 @@ struct InsertAlbumView: View {
     }
 }
 
+// Preview func
 struct InsertAlbumView_Previews: PreviewProvider {
     static var previews: some View {
         InsertAlbumView()

@@ -2,8 +2,7 @@
 //  ModifyAlbumVIew.swift
 //  Albums
 //
-//  Created by user225222 on 11/24/22.
-//
+//  Created by Destin Sulejmani 11/24/22 //
 
 import SwiftUI
 import PhotosUI
@@ -14,6 +13,7 @@ struct ModifyAlbumVIew: View {
     @Environment(\.managedObjectContext) var dbContext
     @Environment(\.dismiss) var dismiss
     
+    // Variables list
     @State private var inputTitle = ""
     @State private var inputYear = ""
     @State private var inputAuthor = ""
@@ -21,8 +21,10 @@ struct ModifyAlbumVIew: View {
     @State var selectedItem: PhotosPickerItem? = nil
     @State private var selectedImageData: Data? = nil
     
+    // Bool for func
     @State private var valuesLoaded = false
     
+    // optional
     let album: Album?
     
     var body: some View {
@@ -60,6 +62,7 @@ struct ModifyAlbumVIew: View {
                     .cornerRadius(20)
                     .padding(.horizontal)
                 }
+                // updates list when changes are made
                 .onChange(of: selectedItem) { newItem in
                     Task {
                         if let data = try? await newItem?.loadTransferable(type: Data.self) {
@@ -112,6 +115,7 @@ struct ModifyAlbumVIew: View {
         }
     }
     
+    // Func to store modified information for exisiting album
     func storeAlbum(title: String, year: Int32, author: String) async {
         await dbContext.perform {
             album?.title = title
@@ -135,6 +139,7 @@ struct ModifyAlbumVIew: View {
 
 }
 
+// preview func
 struct ModifyAlbumVIew_Previews: PreviewProvider {
     static var previews: some View {
         ModifyAlbumVIew(album: nil)
